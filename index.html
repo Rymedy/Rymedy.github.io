@@ -13,6 +13,15 @@
     enable_page_level_ads: true
   });
 </script>
+<script type="text/javascript" src="css.js"></script>
+
+var cssFile = document.createElement('link');
+cssFile.type = 'text/css';
+cssFile.rel = 'stylesheet';
+cssFile.href = '/test.css';
+cssFile.media = 'screen';
+cssFile.title = 'dynamicLoadedSheet';
+document.getElementsByTagName("head")[0].appendChild(cssFile); 
   </head>
 
   <body>
