@@ -1,57 +1,64 @@
 <!DOCTYPE html>
 <html>
-  <head>
-
-    <meta charset="utf-8">
-    <title>Bayside Beat: Cable Cars</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-  </head>
-
-  <body>
-    <div class="header">
-      <h1>Bayside Beat</h1>
-      <div class="navbar">
-      <a href="#home">Home</a>
-      <a href="#sightseeing">Sightseeing</a>
-      <a href="#eatingout">Eating Out</a>
-      <a href="#whatson">What's On</a>
-      <a href="#sightseeing">Where To Stay</a>
-      </div> 
-    </div>
-    <div class="image">
-    <img src="goldengate.png" width="1908" height="820" alt="Golden Gate">
-    <div class="top-right">
-      <div id="rcorners1">
-    <h1>BE WHERE IT'S AT</h1>
-    <p>San Francisco is one of the most exciting and vibrant cities on the planet. Bayside Beat is here to keep you informed of the best places to see, where to eat, what to do, and where to lay down your weary head after an action-packed day-or night-on the town.</p>
-    </div>
-  </div>
-    </div>
-    <div id="text">
-      <article id="main">
-        <h1>Riding the Cable Cars</h1>
-        <p>No visit to San Francisco is complete without a ride on the iconic cable cars that climb up the vertigious hills of the city. Of the twenty-three lines established between 1873 and 1890 three remain: two routes from downtown near Union Square to Fishermen's Whart and a third route along California Street.</p>
-      </article>
-      <div id="sidebar">
-        <h1>Cable Car Tips</h1>
-        <p>A single ride on a cable car costs $7. If you plan to travel around the city, it's often cheaper to buy a Muni Passport, which gives you unlimited rides of San Francisco's extensive public transport system, including the cable cars(but not the BART subway system). Even a single-day passport ($20) will save you money if you make a return trip, and stop off to visit Chinatown one way.
-        </br>
-      </br>
-      There are often long lines at the cable car terminus, particularly on the Powell-Mason and Powell-Hyde routes. If you don't want to wait, try walking a few stops along the route. The conductor usually leaves a small number of places to pick up passengers on the way. The California Street route is generally less crowded (but not as spectacular).</p>
-      </div>
-    </div>
-    <div id="image1">
-    <div class="image">
-    <img src="cablecar.png" width="450" height="300" alt="Cable Car">
-  </div>
-</div>
-    <article id="main1">
-      <p>The cable cars rely on cables running constantly beneath the road's surface. The driver -or gripman-uses a lever to grip the cable to pull the car and its passengers up the hill. The gripman requires not only great strength, but also great skill. He needs to know where to release the cable to coast over crossing cables and points. The conductor works in close cooperation with the gripman, operating the brake at the rear of the car to prevent it from running out of control on the downward slopes.
-      </br>
-      Although the cable cars are now mainly a tourist attraction, they're still used by local commutors on weekdays.
-    </article>
-<footer id="footer">
-  <div id="footer-content">© 2013 Bayside Beat</div>
-</footer>
-  </body>
+<head>
+  <script type='text/javascript' src='https://cdn.scaledrone.com/scaledrone.min.js'></script>
+  <!--<script type='text/javascript' src='http://0.0.0.0:8080/scaledrone.js'></script>-->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <style>
+    body {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 13px;
+      display: flex;
+      flex-direction: column;
+      max-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    .members-count,
+    .members-list,
+    .messages {
+      border: 1px solid #e4e4e4;
+      padding: 15px;
+      margin-bottom: 15px;
+    }
+    .messages {
+      flex-shrink: 1;
+      overflow: auto;
+    }
+    .message {
+      padding: 5px 0;
+    }
+    .message .member {
+      display: inline-block;
+    }
+    .member {
+      padding-right: 10px;
+      position: relative;
+    }
+    .message-form {
+      display: flex;
+      flex-shrink: 0;
+    }
+    .message-form__input {
+      flex-grow: 1;
+      border: 1px solid #dfdfdf;
+      padding: 10px 15px;
+      font-size: 16px;
+    }
+    .message-form__button {
+      margin: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="members-count">-</div>
+  <div class="members-list">-</div>
+  <div class="messages"></div>
+  <form class="message-form" onsubmit="return false;">
+    <input class="message-form__input" placeholder="Type a message.." type="text"/>
+    <input class="message-form__button" value="Send" type="submit"/>
+  </form>
+  <script src="./script.js"></script>
+</body>
 </html>
