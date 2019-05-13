@@ -1,7 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <script type='text/javascript' src='https://cdn.scaledrone.com/scaledrone.min.js'></script>
+<html><head>
+  <script type="text/javascript" src="https://cdn.scaledrone.com/scaledrone.min.js"></script>
   <!--<script type='text/javascript' src='http://0.0.0.0:8080/scaledrone.js'></script>-->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
@@ -52,13 +50,36 @@
   </style>
 </head>
 <body>
-  <div class="members-count">-</div>
-  <div class="members-list">-</div>
+  <div class="members-count">2 users in room:</div>
+  <div class="members-list"><div class="member" style="color: rgb(134, 234, 146);">floral_star</div></div>
   <div class="messages"></div>
   <form class="message-form" onsubmit="return false;">
-    <input class="message-form__input" placeholder="Type a message.." type="text"/>
-    <input class="message-form__button" value="Send" type="submit"/>
+    <input class="message-form__input" placeholder="Type a message.." type="text">
+    <input class="message-form__button" value="Send" type="submit">
   </form>
   <script src="./script.js"></script>
-</body>
-</html>
+  <script>
+function startTime() {
+  var today = new Date();
+  var h = today.getHours();
+  var m = today.getMinutes();
+  var s = today.getSeconds();
+  m = checkTime(m);
+  s = checkTime(s);
+  document.getElementById('txt').innerHTML =
+  h + ":" + m + ":" + s;
+  var t = setTimeout(startTime, 500);
+}
+function checkTime(i) {
+  if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+  return i;
+}
+</script>
+</head>
+
+<body onload="startTime()">
+
+<div id="txt"></div>
+
+
+</body></html>
