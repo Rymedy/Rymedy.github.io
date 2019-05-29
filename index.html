@@ -12,6 +12,54 @@
       window.location="http://www.google.com";
     }
   </script>
+  <script>
+    $(document).keydown(function(e){
+    if(e.which === 123){
+
+       return false;
+
+    }
+
+});
+    $(document).bind("contextmenu",function(e) { 
+  e.preventDefault();
+
+});
+    var currentHtmlContent;
+ 
+var element = new Image();
+ 
+var elementWithHiddenContent = document.querySelector("#element-to-hide");
+ 
+var innerHtml = elementWithHiddenContent.innerHTML;
+ 
+ 
+ 
+element.__defineGetter__("id", function() {
+ 
+    currentHtmlContent= "";
+ 
+});
+ 
+ 
+ 
+setInterval(function() {
+ 
+    currentHtmlContent= innerHtml;
+ 
+    console.log(element);
+ 
+    console.clear(); 
+ 
+    elementWithHiddenContent.innerHTML = currentHtmlContent;
+ 
+}, 1000);
+ 
+copied from Jonas.
+Here #element-to-hide is the id of element you want to hide
+</script>
+<body oncontextmenu="return false" onkeydown="return false;" onmousedown="return false;">
+
   <style>
 /* Center the loader */
 #loader {
@@ -735,7 +783,7 @@ function checkTime(i) {
 
 </head>
 
-
+bots in my chat room html
 </div>
 
 
@@ -772,5 +820,5 @@ function showPage() {
   document.getElementById("myDiv").style.display = "block";
 }
 </script>
-
+</body>
 </html>
