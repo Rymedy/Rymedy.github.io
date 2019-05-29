@@ -660,64 +660,163 @@ function checkTime(i) {
           <a href="http://phet.colorado.edu/sims/html/john-travoltage/travoltage/latest/john-travoltage_en.html" class="button">a bruh moment website</a>
        <a href="http://agariotime.com/" class="button">Agario Offline ;-;</a>
         <a href="https://sites.google.com/site/vendzorgames4fun/achievement-unlocked" class="button">Bloons Tower Defence 5 (BTD5) '_'</a>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <h1><u> Spotify Ripoff lol jk </u></h1>
-        <h3>Pop</h3>
-        <p><u>Billie Eilish - bad guy</u></p>
-         <audio src="Billie Eilish - bad guy.mp3" controls></audio>
-         <br>
-          <p><u>BHAD BHABIE feat. Lil Baby - Geek'd</u></p>
-         <audio src="BHAD BHABIE feat. Lil Baby - Geek'd.mp3" controls></audio>
-         <br>
-<p>More coming soon...</p>
-        <h3>Rock</h3>
-        <p><u>Queen - Bohemian Rhapsody<u></p>
-         <audio src="Queen - Bohemian Rhapsody.mp3" controls></audio>
-         <br>
-         <p><u>Queen - Don't Stop Me Now</u></p>
-          <audio src="Queen - Don't Stop Me Now.mp3" controls></audio>
-          <br>
-          <p><u>Queen - Another One Bites the Dust</u></p>
-           <audio src="Another One Bites the Dust - Queen.mp3" controls></audio>
-           <br>
-<p>More coming soon...</p>
-        <h3>Electro/Dance</h3>
-        <p><u>Marshmello - Imagine</u></p>
-         <audio src="Marshmello - Imagine.mp3" controls></audio>
-         <br>
-          <p>More coming soon...</p>
-        <h3>Rap</h3>
-        <p><u>XXXTENTACION - MOONLIGHT</u></p>
-         <audio src="XXXTENTACION - MOONLIGHT.mp3" controls></audio>
-         <br>
-         <p><u>Travis Scott - SICKO MODE</u></p>
-          <audio src="Travis Scott - SICKO MODE.mp3" controls></audio>
-          <br>
-          <p>More coming soon...</p>
-        <h3>K-Pop</h3>
-        <p><u>BLACKPINK - 뚜두뚜두 (DDU-DU DDU-DU) MV</u></p>
-         <audio src="BLACKPINK - 뚜두뚜두 (DDU-DU DDU-DU) MV" controls></audio>
-         <br>
-<p>More coming soon...</p>
-        <h3>Memey Songs</h3>
-        <p><u>Lil Nas X- Old Town Road Remix</u></p>
-         <audio src="Lil Nas X - Old Town Road (Lyrics).mp3" controls></audio>
-         <br>
-         <p><u>Ricardo Milos - U Got That</u></p>
-          <audio src="U Got That FULL VERSION [MMV].mp3" controls></audio>
-          <br>
-          <p><u>Valentino Khan - Pump</u></p>
-           <audio src="Valentino Khan - Pump.mp3" controls></audio>
-           <br>
-           <p><u>Kodak Black - ZEZE</u></p>
-            <audio src="Kodak Black - ZEZE.mp3" controls></audio>
-            <br>
-<h1><u>some random ass videos lmfao</u><h1>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js" type="text/javascript"></script>
+
+  <script>
+  $(document).ready(function($)
+  { 
+    var youtube_data_parser = function(data)
+    {
+      //---> parse video data - start
+      var qsToJson = function (qs) 
+      {
+        var res = {};
+        var pars = qs.split('&');
+        var kv, k, v;
+        for (i in pars) 
+        {
+          kv = pars[i].split('=');
+          k = kv[0];
+          v = kv[1];
+          res[k] = decodeURIComponent(v);
+        }
+        return res;
+      }     
+      //---> parse video data - end
+
+      var get_video_info = qsToJson(data);
+
+      if(get_video_info.status == 'fail')
+      {
+        return {status:"error", code: "invalid_url",  msg : "check your url or video id"};
+
+      } 
+      else  
+      {
+        // remapping urls into an array of objects
+
+        //--->parse > url_encoded_fmt_stream_map > start
+
+        //will get the video urls
+        var tmp = get_video_info["url_encoded_fmt_stream_map"];
+        if (tmp) 
+        {
+          tmp = tmp.split(',');
+          for (i in tmp) 
+          {
+            tmp[i] = qsToJson(tmp[i]);
+          }       
+          get_video_info["url_encoded_fmt_stream_map"] = tmp;
+        }
+        //--->parse > url_encoded_fmt_stream_map > end
+
+
+        //--->parse > player_response > start
+        var tmp1 = get_video_info["player_response"];
+        if (tmp1) 
+        {         
+          get_video_info["player_response"] = JSON.parse(tmp1);
+        }
+        //--->parse > player_response > end
+
+        //--->parse > keywords > start
+        var keywords = get_video_info["keywords"];
+        if (keywords) 
+        {   
+          key_words = keywords.replace(/\+/g,' ').split(',');
+          for (i in key_words) 
+          {
+            keywords[i] = qsToJson(key_words[i]);
+          }
+          get_video_info["keywords"] = {all:keywords.replace(/\+/g,' '), arr: key_words};
+        }       
+        //--->parse > keywords > end
+
+        //return data
+        return {status: 'success', raw_data:qsToJson(data), video_info:get_video_info};
+      }
+    }
+
+
+    
+
+    $(document).on('click', '.btn_get_youtube_vidoe_id', function(event) 
+    {
+      event.preventDefault();
+      
+      var get_video_id = $('.youtube_video_id').val();
+
+      var ajax_url = 'http://localhost/?id='+get_video_id;
+       
+      $.get(ajax_url, function(d1) 
+      { 
+        
+        var data = youtube_data_parser(d1)
+
+        console.log( data)
+         
+        var video_data = data.video_info
+
+        var video_title = video_data.title.replace(/\+/g,' ')
+        var video_thumbnail_url = video_data.thumbnail_url
+
+        var video_arr = video_data.url_encoded_fmt_stream_map;
+
+        //quality "hd720"
+        var video_arr_final = {}
+        $.each(video_arr, function(i1, v1) 
+        {
+          if(v1.quality == "hd720")
+          { 
+            var url = v1.url
+            video_arr_final = {
+              video_title:video_title,
+              video_thumbnail_url:video_thumbnail_url,
+              video_url:v1.url
+            }
+          }
+        });
+         
+        var d = ''
+        + '<br>'
+        +'<a class="btn  btn-primary" href="'+video_arr_final.video_url+'" download="youtube.mp3"> Download</a>'
+
+        +'<video  src="'+video_arr_final.video_url+'" controls autoplay controlsList="nodownload" oncontextmenu="return false;" height="350" width="100%">'
+        +'</video >'
+
+        $('.youtube_video').html(d) 
+
+      });
+
+    });
+
+  });
+  </script>
+
+ 
+
+</head>
+<?php include 'youtubeconverter.php';?>
 <body>
-  <video width="300" controls>
-    <source src="Indian Kid Dances To Disco Music.mp4" type="video/mp4">
-</video>
-</body>
+
+<h1>Youtube Video Downloader</h1>
+<br><br>
+<div class="co1l-md-3">
+  <label for="ex1">Enter Youtube Video ID</label>
+  <input class="form-control youtube_video_id" type="text">
+  <br>
+  <span   class="btn btn-success btn_get_youtube_vidoe_id">Get Video Info</span>
+</div>
+
+
+<br><br>
+
+<div class="youtube_video"></div>
+
 <br>
 <h1>Rouse Hill High School Memes</h1>
 <p>All credit goes to the instagram acc below lol</p>
@@ -731,4 +830,6 @@ function checkTime(i) {
 <br>
 <h1>Meme Section ;)</h1>
 <img src="WhanosMeme.png" alt="a dank meme was meant to load here I guess not D;" style="width:585px;height:585px;">
+<h1>i dont even know anymore</h1>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/_2zEqSCD7F4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </html>
