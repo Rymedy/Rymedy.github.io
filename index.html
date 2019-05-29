@@ -4,6 +4,66 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <style>
+/* Center the loader */
+#loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: 150px;
+  height: 150px;
+  margin: -75px 0 0 -75px;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Add animation to "page content" */
+.animate-bottom {
+  position: relative;
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: 1s;
+  animation-name: animatebottom;
+  animation-duration: 1s
+}
+
+@-webkit-keyframes animatebottom {
+  from { bottom:-100px; opacity:0 } 
+  to { bottom:0px; opacity:1 }
+}
+
+@keyframes animatebottom { 
+  from{ bottom:-100px; opacity:0 } 
+  to{ bottom:0; opacity:1 }
+}
+
+#myDiv {
+  display: none;
+  text-align: inline;
+}
+</style>
+</head>
+<body onload="myFunction()" style="margin:0;">
+
+<div id="loader"></div>
+
+<div style="display:none;" id="myDiv" class="animate-bottom">
+
+  <style>
     body {
       box-sizing: border-box;
       margin: 0;
@@ -113,6 +173,7 @@ function checkTime(i) {
 <button class="button"onclick="copyToClipboard('#p6')">Copy Emoji 🤣</button>
 <h1 id="p7">😄</h1>
 <button class="button"onclick="copyToClipboard('#p7')">Copy Emoji 😄</button>
+
 </center>
 <SCRIPT>
   function copyToClipboard(element) {
@@ -646,15 +707,15 @@ function checkTime(i) {
  
         init();
     </script>
-    <script>
-      window.addEventListener("keydown", function(e) {
-    // space and arrow keys
-    if([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
-        e.preventDefault();
+ <script>
+  document.onkeydown = function(evt) {
+    evt = evt || window.event;
+    var keyCode = evt.keyCode;
+    if (keyCode >= 37 && keyCode <= 40) {
+        return false;
     }
-}, false);
+};
 </script>
- 
 </body>
 <h1><u> Random derpy websites lmfao </u></h1>
           <a href="http://phet.colorado.edu/sims/html/john-travoltage/travoltage/latest/john-travoltage_en.html" class="button">a bruh moment website</a>
@@ -662,155 +723,10 @@ function checkTime(i) {
         <a href="https://sites.google.com/site/vendzorgames4fun/achievement-unlocked" class="button">Bloons Tower Defence 5 (BTD5) '_'</a>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js" type="text/javascript"></script>
-
-  <script>
-  $(document).ready(function($)
-  { 
-    var youtube_data_parser = function(data)
-    {
-      //---> parse video data - start
-      var qsToJson = function (qs) 
-      {
-        var res = {};
-        var pars = qs.split('&');
-        var kv, k, v;
-        for (i in pars) 
-        {
-          kv = pars[i].split('=');
-          k = kv[0];
-          v = kv[1];
-          res[k] = decodeURIComponent(v);
-        }
-        return res;
-      }     
-      //---> parse video data - end
-
-      var get_video_info = qsToJson(data);
-
-      if(get_video_info.status == 'fail')
-      {
-        return {status:"error", code: "invalid_url",  msg : "check your url or video id"};
-
-      } 
-      else  
-      {
-        // remapping urls into an array of objects
-
-        //--->parse > url_encoded_fmt_stream_map > start
-
-        //will get the video urls
-        var tmp = get_video_info["url_encoded_fmt_stream_map"];
-        if (tmp) 
-        {
-          tmp = tmp.split(',');
-          for (i in tmp) 
-          {
-            tmp[i] = qsToJson(tmp[i]);
-          }       
-          get_video_info["url_encoded_fmt_stream_map"] = tmp;
-        }
-        //--->parse > url_encoded_fmt_stream_map > end
-
-
-        //--->parse > player_response > start
-        var tmp1 = get_video_info["player_response"];
-        if (tmp1) 
-        {         
-          get_video_info["player_response"] = JSON.parse(tmp1);
-        }
-        //--->parse > player_response > end
-
-        //--->parse > keywords > start
-        var keywords = get_video_info["keywords"];
-        if (keywords) 
-        {   
-          key_words = keywords.replace(/\+/g,' ').split(',');
-          for (i in key_words) 
-          {
-            keywords[i] = qsToJson(key_words[i]);
-          }
-          get_video_info["keywords"] = {all:keywords.replace(/\+/g,' '), arr: key_words};
-        }       
-        //--->parse > keywords > end
-
-        //return data
-        return {status: 'success', raw_data:qsToJson(data), video_info:get_video_info};
-      }
-    }
-
-
-    
-
-    $(document).on('click', '.btn_get_youtube_vidoe_id', function(event) 
-    {
-      event.preventDefault();
-      
-      var get_video_id = $('.youtube_video_id').val();
-
-      var ajax_url = 'http://localhost/?id='+get_video_id;
-       
-      $.get(ajax_url, function(d1) 
-      { 
-        
-        var data = youtube_data_parser(d1)
-
-        console.log( data)
-         
-        var video_data = data.video_info
-
-        var video_title = video_data.title.replace(/\+/g,' ')
-        var video_thumbnail_url = video_data.thumbnail_url
-
-        var video_arr = video_data.url_encoded_fmt_stream_map;
-
-        //quality "hd720"
-        var video_arr_final = {}
-        $.each(video_arr, function(i1, v1) 
-        {
-          if(v1.quality == "hd720")
-          { 
-            var url = v1.url
-            video_arr_final = {
-              video_title:video_title,
-              video_thumbnail_url:video_thumbnail_url,
-              video_url:v1.url
-            }
-          }
-        });
-         
-        var d = ''
-        + '<br>'
-        +'<a class="btn  btn-primary" href="'+video_arr_final.video_url+'" download="youtube.mp3"> Download</a>'
-
-        +'<video  src="'+video_arr_final.video_url+'" controls autoplay controlsList="nodownload" oncontextmenu="return false;" height="350" width="100%">'
-        +'</video >'
-
-        $('.youtube_video').html(d) 
-
-      });
-
-    });
-
-  });
-  </script>
-
  
 
 </head>
-<?php include 'youtubeconverter.php';?>
-<body>
 
-<h1>Youtube Video Downloader</h1>
-<br><br>
-<div class="co1l-md-3">
-  <label for="ex1">Enter Youtube Video ID</label>
-  <input class="form-control youtube_video_id" type="text">
-  <br>
-  <span   class="btn btn-success btn_get_youtube_vidoe_id">Get Video Info</span>
-</div>
 
 
 <br><br>
@@ -826,10 +742,27 @@ function checkTime(i) {
 <img src="MsWarrenerMeme.png" alt="a dank meme was meant to load here I guess not D;" style="width:585px;height:585px;">
 <img src="MsLennonMeme.png" alt="a dank meme was meant to load here I guess not D;" style="width:585px;height:585px;">
 <img src="SlideMeme.png" alt="a dank meme was meant to load here I guess not D;" style="width:585px;height:585px;">
+<img src="ClassMeme.png" alt="a dank meme was meant to load here I guess not D;" style="width:585px;height:585px;">
 
 <br>
 <h1>Meme Section ;)</h1>
 <img src="WhanosMeme.png" alt="a dank meme was meant to load here I guess not D;" style="width:585px;height:585px;">
 <h1>i dont even know anymore</h1>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/_2zEqSCD7F4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<!-- Begin Comments JavaScript Code --><script type="text/javascript" async>function ajaxpath_5cee4a80a149e(url){return window.location.href == '' ? url : url.replace('&s=','&s=' + escape(window.location.href));}(function(){document.write('<div id="fcs_div_5cee4a80a149e"><a title="free comment script" href="http://www.freecommentscript.com">&nbsp;&nbsp;<b>Free HTML User Comments</b>...</a></div>');fcs_5cee4a80a149e=document.createElement('script');fcs_5cee4a80a149e.type="text/javascript";fcs_5cee4a80a149e.src=ajaxpath_5cee4a80a149e((document.location.protocol=="https:"?"https:":"http:")+"//www.freecommentscript.com/GetComments2.php?p=5cee4a80a149e&s=#!5cee4a80a149e");setTimeout("document.getElementById('fcs_div_5cee4a80a149e').appendChild(fcs_5cee4a80a149e)",1);})();</script><noscript><div><a href="http://www.freecommentscript.com" title="free html user comment box">Free Comment Script</a></div></noscript><!-- End Comments JavaScript Code -->
+</div>
+
+<script>
+var myVar;
+
+function myFunction() {
+  myVar = setTimeout(showPage, 3000);
+}
+
+function showPage() {
+  document.getElementById("loader").style.display = "none";
+  document.getElementById("myDiv").style.display = "block";
+}
+</script>
+
 </html>
