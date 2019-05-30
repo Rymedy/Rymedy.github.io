@@ -58,7 +58,6 @@ setInterval(function() {
 copied from Jonas.
 Here #element-to-hide is the id of element you want to hide
 </script>
-<body oncontextmenu="return false" onkeydown="return false;" onmousedown="return false;">
 
   <style>
 /* Center the loader */
@@ -241,27 +240,6 @@ Here #element-to-hide is the id of element you want to hide
   </form>
   <script src="./script.js"></script>
 
-
-  <script>
-function startTime() {
-  var today = new Date();
-  var h = today.getHours();
-  var m = today.getMinutes();
-  var s = today.getSeconds();
-  m = checkTime(m);
-  s = checkTime(s);
-  document.getElementById('txt').innerHTML =
-  h + ":" + m + ":" + s;
-  var t = setTimeout(startTime, 500);
-}
-function checkTime(i) {
-  if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
-  return i;
-}
-</script>
-</head>
-
-<body onload="startTime()">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </body>
