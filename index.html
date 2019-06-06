@@ -9,7 +9,7 @@
     if (password==pass1)
       alert('Correct password, click OK to enter.');
     else {
-      window.location="https://photricity.com/flw/ip/auth/";
+      window.location="https://www.google.com";
     }
   </script>
   <script>
@@ -196,12 +196,9 @@ Here #element-to-hide is the id of element you want to hide
 </script>
 <gcse:search></gcse:search>
     <br>
-  <h1><u>Chat Room</u></h1>
-<script src="https://chatwee-api.com/v2/script/5cf4d483bd616dc33a1c2c5e.js"></script>
-
-
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </body>
+
 <h1><u>Emoji's</u></h1>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
@@ -265,6 +262,122 @@ Here #element-to-hide is the id of element you want to hide
 <br>
 <h1><u>Pokemon Fire Red</u></h1>
 <iframe src="https://unblockedevrything.github.io/gba/launcher.html#pokemonred" style="border:2px solid red;height:800px;width:1000px";></iframe>
+<h1><u>Flappy Bird</u></h1>
+<iframe src="http://awesomepotatodotcom.weebly.com/flappy-bird.html" style="border:2px solid red;height:800px;width:1000px";></iframe>
+http://awesomepotatodotcom.weebly.com/flappy-bird.html
+<h1><u>Cubeslam</u></h1>
+<iframe src="https://www.cubeslam.com/xymiho" style="border:2px solid red;height:800px;width:1000px";></iframe>
+<h1><u>Gorescript</u></h1>
+<iframe src="https://gorescript.com/classic/play/" style="border:2px solid red;height:800px;width:1000px";></iframe>
+<script>
+  var cvs = document.getElementById("canvas");
+var ctx = cvs.getContext("2d");
+
+// load images
+
+var bird = new Image();
+var bg = new Image();
+var fg = new Image();
+var pipeNorth = new Image();
+var pipeSouth = new Image();
+
+bird.src = "images/bird.png";
+bg.src = "images/bg.png";
+fg.src = "images/fg.png";
+pipeNorth.src = "images/pipeNorth.png";
+pipeSouth.src = "images/pipeSouth.png";
+
+
+// some variables
+
+var gap = 85;
+var constant;
+
+var bX = 10;
+var bY = 150;
+
+var gravity = 1.5;
+
+var score = 0;
+
+// audio files
+
+var fly = new Audio();
+var scor = new Audio();
+
+fly.src = "sounds/fly.mp3";
+scor.src = "sounds/score.mp3";
+
+// on key down
+
+document.addEventListener("keydown",moveUp);
+
+function moveUp(){
+    bY -= 25;
+    fly.play();
+}
+
+// pipe coordinates
+
+var pipe = [];
+
+pipe[0] = {
+    x : cvs.width,
+    y : 0
+};
+
+// draw images
+
+function draw(){
+    
+    ctx.drawImage(bg,0,0);
+    
+    
+    for(var i = 0; i < pipe.length; i++){
+        
+        constant = pipeNorth.height+gap;
+        ctx.drawImage(pipeNorth,pipe[i].x,pipe[i].y);
+        ctx.drawImage(pipeSouth,pipe[i].x,pipe[i].y+constant);
+             
+        pipe[i].x--;
+        
+        if( pipe[i].x == 125 ){
+            pipe.push({
+                x : cvs.width,
+                y : Math.floor(Math.random()*pipeNorth.height)-pipeNorth.height
+            }); 
+        }
+
+        // detect collision
+        
+        if( bX + bird.width >= pipe[i].x && bX <= pipe[i].x + pipeNorth.width && (bY <= pipe[i].y + pipeNorth.height || bY+bird.height >= pipe[i].y+constant) || bY + bird.height >=  cvs.height - fg.height){
+            location.reload(); // reload the page
+        }
+        
+        if(pipe[i].x == 5){
+            score++;
+            scor.play();
+        }
+        
+        
+    }
+
+    ctx.drawImage(fg,0,cvs.height - fg.height);
+    
+    ctx.drawImage(bird,bX,bY);
+    
+    bY += gravity;
+    
+    ctx.fillStyle = "#000";
+    ctx.font = "20px Verdana";
+    ctx.fillText("Score : "+score,10,cvs.height-20);
+    
+    requestAnimationFrame(draw);
+    
+}
+
+draw();
+</script>
 
 <br>
 </body>
