@@ -1,182 +1,184 @@
-<html><head>
+<html>
+
+<head>
   <script type="text/javascript" src="https://cdn.scaledrone.com/scaledrone.min.js"></script>
   <!--<script type='text/javascript' src='http://0.0.0.0:8080/scaledrone.js'></script>-->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
- <script>
-    function sha256(ascii) {
-      const rRot = (value, amount) => (value >>> amount) | (value << (32 - amount));
-      let result = "";
-      let j, i;
-      let words = [];
-      let asciiBitLength = ascii.length * 8;
-      let hash = sha256.h = sha256.h || [];
-      let k = sha256.k = sha256.k || [];
-      let primeCounter = k.length;
-      let isComposite = {};
-      for (let candidate = 2; primeCounter < 64; candidate++) {
-        if (!isComposite[candidate]) {
-          for (i = 0; i < 313; i += candidate) isComposite[i] = candidate;
-          hash[primeCounter] = (Math.sqrt(candidate) * Math.pow(2, 32)) | 0;
-          k[primeCounter++] = (Math.pow(candidate, 1 / 3) * Math.pow(2, 32)) | 0;
-        }
+  <script>
+  function sha256(ascii) {
+    const rRot = (value, amount) => (value >>> amount) | (value << (32 - amount));
+    let result = "";
+    let j, i;
+    let words = [];
+    let asciiBitLength = ascii.length * 8;
+    let hash = sha256.h = sha256.h || [];
+    let k = sha256.k = sha256.k || [];
+    let primeCounter = k.length;
+    let isComposite = {};
+    for (let candidate = 2; primeCounter < 64; candidate++) {
+      if (!isComposite[candidate]) {
+        for (i = 0; i < 313; i += candidate) isComposite[i] = candidate;
+        hash[primeCounter] = (Math.sqrt(candidate) * Math.pow(2, 32)) | 0;
+        k[primeCounter++] = (Math.pow(candidate, 1 / 3) * Math.pow(2, 32)) | 0;
       }
-      ascii += "\x80"; // Append Ƈ" bit (plus zero padding)
-      while (ascii.length % 64 - 56) ascii += "\x00"; // More zero padding
-      for (i = 0; i < ascii.length; i++) {
-        let j = ascii.charCodeAt(i);
-        words[i >> 2] |= j << ((3 - i) % 4) * 8;
-      }
-      words[words.length] = ((asciiBitLength / Math.pow(2, 32)) | 0);
-      words[words.length] = (asciiBitLength);
-      for (j = 0; j < words.length;) {
-        let w = words.slice(j, j += 16); // The message is expanded into 64 words as part of the iteration
-        let oldHash = hash;
-        hash = hash.slice(0, 8);
-        for (i = 0; i < 64; i++) {
-          let w15 = w[i - 15],
-            w2 = w[i - 2];
-          let a = hash[0],
-            e = hash[4];
-          let temp1 = hash[7] + (rRot(e, 6) ^ rRot(e, 11) ^ rRot(e, 25)) + ((e & hash[5]) ^ ((~e) & hash[6])) + k[i] + (w[i] = (i < 16) ? w[i] : (w[i - 16] + (rRot(w15, 7) ^ rRot(w15, 18) ^ (w15 >>> 3)) + w[i - 7] + (rRot(w2, 17) ^ rRot(w2, 19) ^ (w2 >>> 10))) | 0);
-          hash = [(temp1 + (rRot(a, 2) ^ rRot(a, 13) ^ rRot(a, 22)) + ((a & hash[1]) ^ (a & hash[2]) ^ (hash[1] & hash[2]))) | 0].concat(hash); // We don"t bother trimming off the extra ones, they"re harmless as long as we"re truncating when we do the slice()
-          hash[4] = (hash[4] + temp1) | 0;
-        }
-        for (i = 0; i < 8; i++) hash[i] = (hash[i] + oldHash[i]) | 0;
-      }
-      for (i = 0; i < 8; i++) {
-        for (j = 3; j + 1; j--) {
-          let b = (hash[i] >> (j * 8)) & 255;
-          result += ((b < 16) ? 0 : "") + b.toString(16);
-        }
-      }
-      return result;
-    };
-    
-    password = prompt('Enter Password To View Page');
-    if (sha256(password) === "0e89e1397c672db8e0390c1079045ac9cba01de90beaeb40e4bc9aa09e6618e9") {
-      alert('Correct password, click OK to enter.');
-    } else {
-      window.location="https://www.google.com";
     }
+    ascii += "\x80"; // Append Ƈ" bit (plus zero padding)
+    while (ascii.length % 64 - 56) ascii += "\x00"; // More zero padding
+    for (i = 0; i < ascii.length; i++) {
+      let j = ascii.charCodeAt(i);
+      words[i >> 2] |= j << ((3 - i) % 4) * 8;
+    }
+    words[words.length] = ((asciiBitLength / Math.pow(2, 32)) | 0);
+    words[words.length] = (asciiBitLength);
+    for (j = 0; j < words.length;) {
+      let w = words.slice(j, j += 16); // The message is expanded into 64 words as part of the iteration
+      let oldHash = hash;
+      hash = hash.slice(0, 8);
+      for (i = 0; i < 64; i++) {
+        let w15 = w[i - 15],
+          w2 = w[i - 2];
+        let a = hash[0],
+          e = hash[4];
+        let temp1 = hash[7] + (rRot(e, 6) ^ rRot(e, 11) ^ rRot(e, 25)) + ((e & hash[5]) ^ ((~e) & hash[6])) + k[i] + (w[i] = (i < 16) ? w[i] : (w[i - 16] + (rRot(w15, 7) ^ rRot(w15, 18) ^ (w15 >>> 3)) + w[i - 7] + (rRot(w2, 17) ^ rRot(w2, 19) ^ (w2 >>> 10))) | 0);
+        hash = [(temp1 + (rRot(a, 2) ^ rRot(a, 13) ^ rRot(a, 22)) + ((a & hash[1]) ^ (a & hash[2]) ^ (hash[1] & hash[2]))) | 0].concat(hash); // We don"t bother trimming off the extra ones, they"re harmless as long as we"re truncating when we do the slice()
+        hash[4] = (hash[4] + temp1) | 0;
+      }
+      for (i = 0; i < 8; i++) hash[i] = (hash[i] + oldHash[i]) | 0;
+    }
+    for (i = 0; i < 8; i++) {
+      for (j = 3; j + 1; j--) {
+        let b = (hash[i] >> (j * 8)) & 255;
+        result += ((b < 16) ? 0 : "") + b.toString(16);
+      }
+    }
+    return result;
+  };
+  password = prompt('Enter Password To View Page');
+  if (sha256(password) === "0e89e1397c672db8e0390c1079045ac9cba01de90beaeb40e4bc9aa09e6618e9") {
+    alert('Correct password, click OK to enter.');
+  } else {
+    window.location = "https://www.google.com";
+  }
   </script>
   <script>
-    $(document).keydown(function(e){
-    if(e.which === 123){
+  $(document).keydown(function (e) {
+    if (e.which === 123) {
+      return false;
+    }
+  });
+  $(document).bind("contextmenu", function (e) {
+    e.preventDefault();
+  });
+  var currentHtmlContent;
+  var element = new Image();
+  var elementWithHiddenContent = document.querySelector("#element-to-hide");
+  var innerHtml = elementWithHiddenContent.innerHTML;
+  element.__defineGetter__("id", function () {
+    currentHtmlContent = "";
+  });
+  setInterval(function () {
+    currentHtmlContent = innerHtml;
+    console.log(element);
+    console.clear();
+    elementWithHiddenContent.innerHTML = currentHtmlContent;
+  }, 1000);
+  copied from Jonas.
+  Here# element - to - hide is the id of element you want to hide
+  </script>
+  <style>
+  /* Center the loader */
+  #loader {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 1;
+    width: 150px;
+    height: 150px;
+    margin: -75px 0 0 -75px;
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+  }
 
-       return false;
-
+  @-webkit-keyframes spin {
+    0% {
+      -webkit-transform: rotate(0deg);
     }
 
-});
-    $(document).bind("contextmenu",function(e) { 
-  e.preventDefault();
+    100% {
+      -webkit-transform: rotate(360deg);
+    }
+  }
 
-});
-    var currentHtmlContent;
- 
-var element = new Image();
- 
-var elementWithHiddenContent = document.querySelector("#element-to-hide");
- 
-var innerHtml = elementWithHiddenContent.innerHTML;
- 
- 
- 
-element.__defineGetter__("id", function() {
- 
-    currentHtmlContent= "";
- 
-});
- 
- 
- 
-setInterval(function() {
- 
-    currentHtmlContent= innerHtml;
- 
-    console.log(element);
- 
-    console.clear(); 
- 
-    elementWithHiddenContent.innerHTML = currentHtmlContent;
- 
-}, 1000);
- 
-copied from Jonas.
-Here #element-to-hide is the id of element you want to hide
-</script>
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
 
-  <style>
-/* Center the loader */
-#loader {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  z-index: 1;
-  width: 150px;
-  height: 150px;
-  margin: -75px 0 0 -75px;
-  border: 16px solid #f3f3f3;
-  border-radius: 50%;
-  border-top: 16px solid #3498db;
-  width: 120px;
-  height: 120px;
-  -webkit-animation: spin 2s linear infinite;
-  animation: spin 2s linear infinite;
-}
+    100% {
+      transform: rotate(360deg);
+    }
+  }
 
-@-webkit-keyframes spin {
-  0% { -webkit-transform: rotate(0deg); }
-  100% { -webkit-transform: rotate(360deg); }
-}
+  /* Add animation to "page content" */
+  .animate-bottom {
+    position: relative;
+    -webkit-animation-name: animatebottom;
+    -webkit-animation-duration: 1s;
+    animation-name: animatebottom;
+    animation-duration: 1s
+  }
 
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
+  @-webkit-keyframes animatebottom {
+    from {
+      bottom: -100px;
+      opacity: 0
+    }
 
-/* Add animation to "page content" */
-.animate-bottom {
-  position: relative;
-  -webkit-animation-name: animatebottom;
-  -webkit-animation-duration: 1s;
-  animation-name: animatebottom;
-  animation-duration: 1s
-}
+    to {
+      bottom: 0px;
+      opacity: 1
+    }
+  }
 
-@-webkit-keyframes animatebottom {
-  from { bottom:-100px; opacity:0 } 
-  to { bottom:0px; opacity:1 }
-}
+  @keyframes animatebottom {
+    from {
+      bottom: -100px;
+      opacity: 0
+    }
 
-@keyframes animatebottom { 
-  from{ bottom:-100px; opacity:0 } 
-  to{ bottom:0; opacity:1 }
-}
+    to {
+      bottom: 0;
+      opacity: 1
+    }
+  }
 
-#myDiv {
-  display: none;
-  text-align: inline;
-}
-</style>
+  #myDiv {
+    display: none;
+    text-align: inline;
+  }
+  </style>
 </head>
+
 <body onload="myFunction()" style="margin:0;">
-<div id="loader"></div>
-
-<div style="display:none;" id="myDiv" class="animate-bottom">
-
-  <style>
+  <div id="loader"></div>
+  <div style="display:none;" id="myDiv" class="animate-bottom">
+    <style>
     body {
       box-sizing: border-box;
       margin: 0;
       padding: 13px;
-      background-color:;
-    
+      background-color: ;
       flex-direction: column;
       max-height: 100vh;
       font-family: -apple-system, BlinkMacSystemFont, sans-serif;
     }
+
     .members-count,
     .members-list,
     .messages {
@@ -184,162 +186,159 @@ Here #element-to-hide is the id of element you want to hide
       padding: 15px;
       margin-bottom: 15px;
     }
+
     .messages {
       flex-shrink: 1;
       overflow: auto;
     }
+
     .message {
       padding: 5px 0;
     }
+
     .message .member {
       display: inline-block;
     }
+
     .member {
       padding-right: 10px;
       position: relative;
     }
+
     .message-form {
       display: flex;
       flex-shrink: 0;
     }
+
     .message-form__input {
       flex-grow: 1;
       border: 1px solid #dfdfdf;
       padding: 10px 15px;
       font-size: 16px;
     }
+
     .message-form__button {
       margin: 10px;
-        background-color: #f44336;
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
+      background-color: #f44336;
+      border: none;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
     }
-  </style>
-</head>
-<body>
-  <img src="RHHS Logo.png" alt="Girl in a jacket" style="width:150px;height:175px;">
-  <h1>Official Rouse Hill High School Meme Site</h1>
-  <br>
-
-  <br>
-  <h1><u>Search Engine</u></h1>
-  <img src="GoogleMeme.png" alt="a dank meme was meant to load here I guess not D;">
-  <script>
-  (function() {
-    var cx = '005912596327577057192:futwiviyi2y';
-    var gcse = document.createElement('script');
-    gcse.type = 'text/javascript';
-    gcse.async = true;
-    gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
-    var s = document.getElementsByTagName('script')[0];
-    s.parentNode.insertBefore(gcse, s);
-  })();
-</script>
-<gcse:search></gcse:search>
-    <br>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-</body>
-
-<h1><u>Emoji's</u></h1>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-
-<h1 id="p1">👌</h1>
-<button class="button"onclick="copyToClipboard('#p1')">Copy Emoji 👌</button>
-<h1 id="p2">🤣</h1>
-<button class="button"onclick="copyToClipboard('#p2')">Copy Emoji 🤣</button>
-<h1 id="p3">🥒</h1>
-<button class="button"onclck="copyToClipboard('#p3')">Copy Emoji 🥒</button>
-<h1 id="p4">🍆</h1>
-<button class="button"onclick="copyToClipboard('#p4')">Copy Emoji 🍆</button>
-<h1 id="p5">(´・ω・`)</h1>
-<button class="button"onclick="copyToClipboard('#p5')">Copy Emoji (´・ω・`)</button>
-<h1 id="p6">😢</h1>
-<button class="button"onclick="copyToClipboard('#p6')">Copy Emoji 😢</button>
-<h1 id="p7">🤗</h1>
-<button class="button"onclick="copyToClipboard('#p7')">Copy Emoji 🤗</button>
-
-</center>
-<SCRIPT>
-  function copyToClipboard(element) {
-  var $temp = $("<input>");
-  $("body").append($temp);
-  $temp.val($(element).text()).select();
-  document.execCommand("copy");
-  $temp.remove();
-}</SCRIPT>
-<style>
-.button {
-  background-color: #f44336;
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-}
-</style>
-<br>
-<head>
-    <meta charset='UTF-8'>
-    <style>
-        canvas {
-            position: relative;
-            top: 45%;
-            left: 50%;
-            width: 640px;
-            height: 640px;
-            margin: -850px 0 0 -320px;
-        }
     </style>
-</head>
- <br>
- <br>
-<h1><u>Tetris</u></h1>
-<iframe src="https://www.rossipotti.de/ausgabe28/tetris/index.html" style="border:2px solid black;height:800px;width:1000px";></iframe>
-<br>
-<br>
-<h1><u>Pokemon Fire Red</u></h1>
-<iframe src="https://unblockedevrything.github.io/gba/launcher.html#pokemonred" style="border:2px solid red;height:800px;width:1000px";></iframe>
-<h1><u>Pokemon Emerald</u></h1>
-<iframe src="https://unblockedevrything.github.io/gba/launcher.html#pokemonemerald" style="border:2px solid green;height:800px;width:1000px";></iframe>
-<h1><u>Flappy Bird</u></h1>
-<iframe src="http://awesomepotatodotcom.weebly.com/flappy-bird.html" style="border:2px solid blue;height:800px;width:1000px";></iframe>
+    </head>
 
+    <body>
+      <img src="RHHS Logo.png" alt="Girl in a jacket" style="width:150px;height:175px;">
+      <h1>Official Rouse Hill High School Meme Site</h1>
+      <br>
+      <br>
+      <h1><u>Search Engine</u></h1>
+      <img src="GoogleMeme.png" alt="a dank meme was meant to load here I guess not D;">
+      <script>
+      (function () {
+        var cx = '005912596327577057192:futwiviyi2y';
+        var gcse = document.createElement('script');
+        gcse.type = 'text/javascript';
+        gcse.async = true;
+        gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(gcse, s);
+      })();
+      </script>
+      <gcse:search></gcse:search>
+      <br>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+    </body>
+    <h1><u>Emoji's</u></h1>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <h1 id="p1">👌</h1>
+    <button class="button" onclick="copyToClipboard('#p1')">Copy Emoji 👌</button>
+    <h1 id="p2">🤣</h1>
+    <button class="button" onclick="copyToClipboard('#p2')">Copy Emoji 🤣</button>
+    <h1 id="p3">🥒</h1>
+    <button class="button" onclck="copyToClipboard('#p3')">Copy Emoji 🥒</button>
+    <h1 id="p4">🍆</h1>
+    <button class="button" onclick="copyToClipboard('#p4')">Copy Emoji 🍆</button>
+    <h1 id="p5">(´・ω・`)</h1>
+    <button class="button" onclick="copyToClipboard('#p5')">Copy Emoji (´・ω・`)</button>
+    <h1 id="p6">😢</h1>
+    <button class="button" onclick="copyToClipboard('#p6')">Copy Emoji 😢</button>
+    <h1 id="p7">🤗</h1>
+    <button class="button" onclick="copyToClipboard('#p7')">Copy Emoji 🤗</button>
+    </center>
+    <SCRIPT>
+    function copyToClipboard(element) {
+      var $temp = $("<input>");
+      $("body").append($temp);
+      $temp.val($(element).text()).select();
+      document.execCommand("copy");
+      $temp.remove();
+    }
+    </SCRIPT>
+    <style>
+    .button {
+      background-color: #f44336;
+      border: none;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+    </style>
+    <br>
 
-
-<h1><u> Games made in Javascript </u></h1>
- <a href="game.html" target="_blank" class="button">TypeWeeb</a>
-<br>
-<br>
+    <head>
+      <meta charset='UTF-8'>
+      <style>
+      canvas {
+        position: relative;
+        top: 45%;
+        left: 50%;
+        width: 640px;
+        height: 640px;
+        margin: -850px 0 0 -320px;
+      }
+      </style>
+    </head>
+    <br>
+    <br>
+    <h1><u>Tetris</u></h1>
+    <iframe src="https://www.rossipotti.de/ausgabe28/tetris/index.html" style="border:2px solid black;height:800px;width:1000px" ;></iframe>
+    <br>
+    <br>
+    <h1><u>Pokemon Fire Red</u></h1>
+    <iframe src="https://unblockedevrything.github.io/gba/launcher.html#pokemonred" style="border:2px solid red;height:800px;width:1000px" ;></iframe>
+    <h1><u>Pokemon Emerald</u></h1>
+    <iframe src="https://unblockedevrything.github.io/gba/launcher.html#pokemonemerald" style="border:2px solid green;height:800px;width:1000px" ;></iframe>
+    <h1><u>Flappy Bird</u></h1>
+    <iframe src="http://awesomepotatodotcom.weebly.com/flappy-bird.html" style="border:2px solid blue;height:800px;width:1000px" ;></iframe>
+    <h1><u> Games made in Javascript </u></h1>
+    <a href="game.html" target="_blank" class="button">TypeWeeb</a>
+    <br>
+    <br>
 </body>
 <h1><u> Random derpy websites i found lmfao </u></h1>
-          <a href="http://phet.colorado.edu/sims/html/john-travoltage/travoltage/latest/john-travoltage_en.html" target="_blank" class="button">a bruh moment website</a>
-       <a href="http://agariotime.com/" target="_blank" class="button">Agario Offline ;-;</a>
-        <a href="https://sites.google.com/site/vendzorgames4fun/achievement-unlocked" target="_blank" class="button">Bloons Tower Defence 5 (BTD5) '_'</a>
+<a href="http://phet.colorado.edu/sims/html/john-travoltage/travoltage/latest/john-travoltage_en.html" target="_blank" class="button">a bruh moment website</a>
+<a href="http://agariotime.com/" target="_blank" class="button">Agario Offline ;-;</a>
+<a href="https://sites.google.com/site/vendzorgames4fun/achievement-unlocked" target="_blank" class="button">Bloons Tower Defence 5 (BTD5) '_'</a>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
- 
-
 </head>
 <br>
 <br>
 <h1>Possibly blocked at school D;</h1>
 <h2><u>Pokemon Go Nests</u></h2>
- <a href="https://thesilphroad.com/atlas" class="button">Pokemon Go Nests</a>
+<a href="https://thesilphroad.com/atlas" class="button">Pokemon Go Nests</a>
 <br><br>
-
-
-
 <br>
 <h1>Rouse Hill High School Memes</h1>
 <p>All credit goes to the instagram acc below lol</p>
@@ -350,11 +349,9 @@ Here #element-to-hide is the id of element you want to hide
 <img src="MsLennonMeme.PNG" alt="a dank meme was meant to load here I guess not D;" style="width:585px;height:585px;">
 <img src="SlideMeme.PNG" alt="a dank meme was meant to load here I guess not D;" style="width:585px;height:585px;">
 <img src="ClassMeme.PNG" alt="a dank meme was meant to load here I guess not D;" style="width:585px;height:585px;">
-
 <br>
 <h1>Meme Section ;)</h1>
 <img src="WhanosMeme.png" alt="a dank meme was meant to load here I guess not D;" style="width:585px;height:585px;">
-
 <script>
 var myVar;
 
@@ -369,4 +366,5 @@ function showPage() {
 </script>
 </div>
 </body>
+
 </html>
