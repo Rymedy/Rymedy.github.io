@@ -104,8 +104,8 @@ setInterval(function() {
  
 }, 1000);
  
-copied from Jonas.
-Here #element-to-hide is the id of element you want to hide
+// copied from Jonas.
+// Here #element-to-hide is the id of element you want to hide
 </script>
 
   <style>
@@ -206,13 +206,17 @@ Here #element-to-hide is the id of element you want to hide
   </style>
 </head>
 <body>
-  <img src="RHHS Logo.png" alt="Girl in a jacket" style="width:150px;height:175px;">
-  <h1>Official Rouse Hill High School Meme Site</h1>
+  <img src="RHHS Logo.png" alt="Girl in a jacket" style="width:150px;height:175px;float: left;">
   <br>
-
   <br>
-  <h1><u>Search Engine</u></h1>
-  <img src="GoogleMeme.png" alt="a dank meme was meant to load here I guess not D;">
+  <br>
+  <br>
+  <h1 style="display: inline; font-size: 51px;">Official Rouse Hill High School Meme Site</h1>
+  <img src="RHHS Logo.png" alt="Girl in a jacket" style="width:150px;height:175px;position: absolute; top: 0; right: 0;">
+  <div style="margin-bottom: 100px;"></div>
+  <br>
+  <h1 style="text-align: center;"><u>Search Engine</u></h1>
+  <img style="margin-left: calc(100vw / 2 - 244px);" src="GoogleMeme.png" alt="a dank meme was meant to load here I guess not D;">
   <script>
   (function() {
     var cx = '005912596327577057192:futwiviyi2y';
@@ -238,23 +242,37 @@ Here #element-to-hide is the id of element you want to hide
 <script src="/__/firebase/init.js"></script>
 </body>
 
-<h1><u>Emoji's</u></h1>
+<h1 style="text-align: center;"><u>Emoji's</u></h1>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
-<h1 id="p1">👌</h1>
-<button class="button"onclick="copyToClipboard('#p1')">Copy Emoji 👌</button>
-<h1 id="p2">🤣</h1>
-<button class="button"onclick="copyToClipboard('#p2')">Copy Emoji 🤣</button>
-<h1 id="p3">🥒</h1>
-<button class="button"onclck="copyToClipboard('#p3')">Copy Emoji 🥒</button>
-<h1 id="p4">🍆</h1>
-<button class="button"onclick="copyToClipboard('#p4')">Copy Emoji 🍆</button>
-<h1 id="p5">(´・ω・`)</h1>
-<button class="button"onclick="copyToClipboard('#p5')">Copy Emoji (´・ω・`)</button>
-<h1 id="p6">😢</h1>
-<button class="button"onclick="copyToClipboard('#p6')">Copy Emoji 😢</button>
-<h1 id="p7">🤗</h1>
-<button class="button"onclick="copyToClipboard('#p7')">Copy Emoji 🤗</button>
+<span style="display: inline-block;">
+  <h1 id="p1">👌</h1>
+  <button class="button"onclick="copyToClipboard('#p1')">Copy Emoji 👌</button>  
+</span>
+<span style="display: inline-block;">
+  <h1 id="p2">🤣</h1>
+  <button class="button"onclick="copyToClipboard('#p2')">Copy Emoji 🤣</button>
+</span>
+<span style="display: inline-block;">
+  <h1 id="p3">🥒</h1>
+  <button class="button"onclck="copyToClipboard('#p3')">Copy Emoji 🥒</button>
+</span>
+<span style="display: inline-block;">
+  <h1 id="p4">🍆</h1>
+  <button class="button"onclick="copyToClipboard('#p4')">Copy Emoji 🍆</button>
+</span>
+<span style="display: inline-block;">
+  <h1 id="p5">(´・ω・`)</h1>
+  <button class="button"onclick="copyToClipboard('#p5')">Copy Emoji (´・ω・`)</button>
+</span>
+<span style="display: inline-block;">
+  <h1 id="p6">😢</h1>
+  <button class="button"onclick="copyToClipboard('#p6')">Copy Emoji 😢</button>
+</span>
+<span style="display: inline-block;">
+  <h1 id="p7">🤗</h1>
+  <button class="button"onclick="copyToClipboard('#p7')">Copy Emoji 🤗</button>
+</span>
 <br>
 </center>
 <SCRIPT>
@@ -349,7 +367,7 @@ Here #element-to-hide is the id of element you want to hide
 <script>
 var myVar;
 function myFunction() {
-  myVar = setTimeout(showPage, 3000);
+  myVar = setTimeout(showPage, 1000);
 }
 function showPage() {
   document.getElementById("loader").style.display = "none";
