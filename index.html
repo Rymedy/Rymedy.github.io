@@ -62,7 +62,7 @@
     password = prompt('Enter Password To View Page');
     if (sha256(password) === "0e89e1397c672db8e0390c1079045ac9cba01de90beaeb40e4bc9aa09e6618e9") {
       alert('Correct password, click OK to enter.');
-    } else if (password = null || sha256(password) !== "0e89e1397c672db8e0390c1079045ac9cba01de90beaeb40e4bc9aa09e6618e9") {
+    } else if (password === null || sha256(password) !== "0e89e1397c672db8e0390c1079045ac9cba01de90beaeb40e4bc9aa09e6618e9") {
       window.location="incorrectpassword.html";
     }
   </script>
