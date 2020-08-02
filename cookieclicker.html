@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="cookiescript.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: "Lato", sans-serif;
+   cursor: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/9632/meh.png"), auto, pointer;
+   color: white;
+}
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+  display: flex;
+  flex-wrap: nowrap;
+ }
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+#main {
+  transition: margin-left .5s;
+  padding: 16px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+.button {
+  border-radius: 8px;
+  background-color: white;
+  border: none;
+  color: black;
+  padding: px px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  font-family: Arial, Helvetica, sans-serif;
+}
+</style>
+<style>
+	.text {
+    width: 14%;
+  padding: 8px 5px;
+  margin: 8px 0;
+  box-sizing: border-box;
+    }
+
+input[type="image"]:focus {
+    border: none;
+    outline:none;
+
+}
+input[type="button"]:focus {
+    border: none;
+    outline:none;
+
+}
+body {
+  background-image: url('backgroundcookie.png');
+  background-repeat: no-repeat;
+  background-size: 1600px 789px;
+}
+header {
+	color:;
+}
+.login {
+	margin: 15px;
+	color: white;
+}
+input[type=text] {
+  background-color: #1111;
+  color: white;
+  border: none;
+  outline: none;
+  padding-left: 15px;
+  font-size:24px;
+}
+input[type="image"] {
+	padding-left: 450px;
+	padding-top: 75px;
+	position: relative;
+
+}
+.upgrades {
+	display: flex;
+  flex-wrap: nowrap;
+}
+html, body {margin: 0; height: 100%; overflow: hidden}
+	</style>
+
+
+
+
+
+</head>
+<body>
+
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a>🍪<input type="text" id="number" value="0" disabled="disabled" /></a>
+  <a><span id="username"></span></a>
+  <a>Upgrades</a>
+  <a>Collections</a>
+  <a>Achievements</a>
+</div>
+<span style="font-size:30px;cursor:pointer;color:#ffffff;" onclick="openNav()">&#9776;</span>
+ 
+<span id="cookies"></span>
+
+
+
+<div id="main">
+</div>
+
+
+<script>
+function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+  document.getElementById("main").style.marginLeft = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+  document.getElementById("main").style.marginLeft= "0";
+}
+
+//stops noobs from f12ing even tho they can still right click to inspect lol
+document.onkeydown=function(e){return 123!=e.keyCode&&((!e.ctrlKey||!e.shiftKey||e.keyCode!="I".charCodeAt(0))&&((!e.ctrlKey||!e.shiftKey||e.keyCode!="J".charCodeAt(0))&&((!e.ctrlKey||e.keyCode!="U".charCodeAt(0))&&((!e.ctrlKey||!e.shiftKey||e.keyCode!="C".charCodeAt(0))&&void 0))))};
+
+
+var customerName = prompt("Please enter your username:");
+
+if (customerName!= null) {
+
+    document.getElementById("username").innerHTML =
+
+    customerName + "'s Bakery";
+
+}
+else if (customerName = null)
+{
+    location.href = 'http://www.google.com';
+}
+
+
+</script>
+
+
+<div id="upgrades">
+	<button onclick="incrementValue2()" id="button">+1000 Cookies no scam ;)</button>
+<div>
+</div>
+</div>
+<center>
+	
+   <input type="image" id="click" onclick="incrementValue()" value="Increment Value" src="cookieclick.png" width="500" height="450"/>
+
+
+</body>
+</html> 
+
