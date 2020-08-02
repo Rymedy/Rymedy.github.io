@@ -109,6 +109,9 @@
   overflow: hidden;
   background-color: #333;
   text-align: center;
+  position: fixed;
+  width: 100%;
+  top:0;
 }
 
 .button {
