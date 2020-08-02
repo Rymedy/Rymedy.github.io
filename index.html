@@ -8,13 +8,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Projects | Richard Webb</title>
+<div class="topnav">
+<h1 style="color:white;">Richard Webb</h1>
+</div>
 <body>
 
 </body>
 <body>
-<div class="topnav">
-<h1 style="color:white;">Richard Webb</h1>
-</div>
   <div style="margin-bottom: 100px;"></div>
   <center><h1>Weather Forecast</h1></center>
   <script type='text/javascript' src='https://darksky.net/widget/default-small/-33.6924,150.9246/ca12/en.js?width=100%&height=70&title=Full Forecast&textColor=333333&bgColor=transparent&transparency=true&skyColor=undefined&fontFamily=Default&customFont=&units=ca'></script>
@@ -43,38 +43,8 @@
   <body>
 
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
-    <script>
-      var socket = io.connect( 'http://' + document.domain + ':' + location.port )
-      // broadcast a message
-      socket.on( 'connect', function() {
-        socket.emit( 'my event', {
-          data: 'User Connected'
-        } )
-        var form = $( 'form' ).on( 'submit', function( e ) {
-          e.preventDefault()
-          let user_name = $( 'input.username' ).val()
-          let user_input = $( 'input.message' ).val()
-          socket.emit( 'my event', {
-            user_name : user_name,
-            message : user_input
-          } )
-          // empty the input field
-          $( 'input.message' ).val( '' ).focus()
-        } )
-      } )
 
-      // capture message
-      socket.on( 'my response', function( msg ) {
-        console.log( msg )
-        if( typeof msg.user_name !== 'undefined' ) {
-          $( 'h1' ).remove()
-          $( 'div.message_holder' ).append( '<div class="msg_bbl"><b style="color: #000">'+msg.user_name+'</b> '+msg.message+'</div>' )
-        }
-      } )
-    </script>
+   
   <br>
 </center>
 <SCRIPT>
@@ -103,32 +73,56 @@
     </style>
 </head>
  <br>
-<div class="page">
-<h1>WeebMania</h1>
-<p>A game made in Unity 2D using C# learning game development in Unity.</p>
- <a href="https://www.dropbox.com/sh/dfa3tr4xmdoxjg9/AAD7WByxqdI85cRcK1GsvODqa?dl=0" target="_blank" class="button">WeebMania Download</a>
-<br>
-<h1>TypeWeeb</h1>
-<p>A game that was made in Javascript after being inspired by TypeRacer.</p>
- <a href="game.html" target="_blank" class="button">TypeWeeb</a>
- <br>
- <h1>Stick Fight</h1>
- <p>A game that were the base game mechanics for a platformer brawler.</p>
-  <a href="stickfightgame.html" target="_blank" class="button">Stick Fight</a>
-  <br>
-   <h1>COVID-19 Tracker</h1>
-   <p>An website that was designed to help others keep track of COVID-19 data.</p>
-    <a href="coronavirus.html" target="_blank" class="button">COVID-19 Tracker</a>
-    <br>
-    <h1>HSC Studies</h1>
-    <p>Website to assist with HSC Studies (provides resources etc.)</p>
-     <a href="HSC.html" target="_blank" class="button">HSC Studies</a>
-<br>
-<h1>Cookie Clicker (Experimental)</h1>
-    <p>Made to experiment with javascript functions, variables and values.</p>
-     <a href="cookieclicker.html" target="_blank" class="button">Cookie Clicker</a>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+  <div class="row-one">
+<img src="weebmania.png" alt="WeebMania Logo" width="50px" height="50px">&nbsp;<h1>WeebMania</h1>
 </div>
+<p>A game made in Unity 2D using C# learning game development in Unity.</p>
+ <a href="https://www.dropbox.com/sh/dfa3tr4xmdoxjg9/AAD7WByxqdI85cRcK1GsvODqa?dl=0" target="_blank" class="btn btn-danger">WeebMania Download</a>
+<br>
+<br>
+</div>
+  <div class="row-one">
+<img src="typeweeb.png" alt="WeebMania Logo" width="50px" height="50px">&nbsp;<h1>TypeWeeb</h1>
+</div>
+<p>A game that was made in Javascript after being inspired by TypeRacer.</p>
+ <a href="game.html" target="_blank" class="btn btn-danger">TypeWeeb</a>
+<br>
+<br>
+</div>
+  <div class="row-one">
+<img src="stickfight.png" alt="WeebMania Logo" width="50px" height="50px">&nbsp;<h1>Stick Fight</h1>
+</div>
+<p>A game that were the base game mechanics for a platformer brawler.</p>
+ <a href="stickfightgame.html" target="_blank" class="btn btn-danger">Stick Fight</a>
+<br>
+<br>
+</div>
+  <div class="row-one">
+<img src="coronavirus.png" alt="WeebMania Logo" width="50px" height="50px">&nbsp;<h1>COVID-19 Tracker</h1>
+</div>
+<p>An website that was designed to help others keep track of COVID-19 data.</p>
+ <a href="coronavirus.html" target="_blank" class="btn btn-danger">COVID-19 Tracker</a>
+<br>
+<br>
+</div>
+  <div class="row-one">
+<img src="studies.png" alt="WeebMania Logo" width="50px" height="50px">&nbsp;<h1>HSC Studies</h1>
+</div>
+<p>Website to assist with HSC Studies (provides resources etc.)</p>
+ <a href="HSC.html" target="_blank" class="btn btn-danger">HSC Studies</a>
+<br>
+</div>
+<br>
+<br>
+<div class="row-one">
+<img src="cookie.png" alt="WeebMania Logo" width="50px" height="50px">&nbsp;<h1>Cookie Clicker (Experimental)</h1>
+</div>
+<p>Made to experiment with javascript functions, variables and values.</p>
+ <a href="cookieclicker.html" target="_blank" class="btn btn-danger">Cookie Clicker</a>
+<br>
+</div>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
  
 
 </head>
@@ -153,3 +147,5 @@ function showPage() {
 
 </div>
 </body>
+</body>
+</html>
