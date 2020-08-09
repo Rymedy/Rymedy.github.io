@@ -2,7 +2,7 @@
 <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 <link rel="icon" href="/favicon.ico" type="image/x-icon">
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.8/socket.io.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Portfolio | Richard Webb</title>
@@ -13,30 +13,12 @@
   <!--<div style="margin-bottom: 100px;"></div>-->
   <!--<center><h1>Weather Forecast</h1></center>
   <script type='text/javascript' src='https://darksky.net/widget/default-small/-33.6924,150.9246/ca12/en.js?width=100%&height=70&title=Full Forecast&textColor=333333&bgColor=transparent&transparency=true&skyColor=undefined&fontFamily=Default&customFont=&units=ca'></script>-->
+  <header>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
     integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <link rel="stylesheet" href="style.css">
-    <style>
-.background-color {
 
-	background-color:powderblue;
-	overflow:auto;
-}
-    </style>
-
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-  </head>
-  
-
-
-
-   
+  </head>   
   <br>
 </center>
 <SCRIPT>
@@ -46,7 +28,8 @@
   $temp.val($(element).text()).select();
   document.execCommand("copy");
   $temp.remove();
-}</SCRIPT>
+
+</SCRIPT>
 <style>
 
 </style>
@@ -70,6 +53,9 @@
 <p><i>I do </i></p>
 <p><i>graphic design</i></p>
 <span style="color:#f300b4;"><p><i>&nbsp;&nbsp;&</span> <span style="color:white;">code.</i></p></span>
+<div class="btn topbtn">
+<a href="#project" class="button1">Projects</a><a href="#contact" class="button1">Contact Me</a>
+</div>
 </div>
 <div style="background-color:white;">
 <br>
@@ -102,13 +88,12 @@ I really enjoy solving problems as well as making things pretty and easy to use.
 	<br>
 	<br>
 </div>
-
 <br>
 <br>
 <br>
 </div>
 <img src="background1.png" alt="image couldnt be loaded =(" width="1600" height="150" draggable="false" align="left">
-<div class="infront">
+<div id="project">
 <body style="background-color:#F5F5F5;">
 	<center><h1><b>My Projects</b></h1>
 	<p class="separator"></p>
@@ -117,33 +102,31 @@ I really enjoy solving problems as well as making things pretty and easy to use.
             were built during my time during my high (secondary) school years.</p></center></div></center>
             <div class="inline" id="inline">
 <br>
-<center><a href="https://www.dropbox.com/sh/dfa3tr4xmdoxjg9/AAD7WByxqdI85cRcK1GsvODqa?dl=0"><img src="weebmania.png" alt="image couldnt be loaded =(" width="300" height="300" draggable="false" align="left"></a><span clear="right" style="color:#f300b4;"><h1><b><br><br>KEYBOARD DDR GAME.</span></b></h1> <p CLEAR=”right”>A game made in Unity 2D using C# learning game development in Unity.</p></center>
+<center><a href="https://www.dropbox.com/sh/dfa3tr4xmdoxjg9/AAD7WByxqdI85cRcK1GsvODqa?dl=0"><img src="weebmania.png" alt="image couldnt be loaded =(" width="300" height="300" draggable="false" align="left"></a><span clear="right" style="color:#f300b4;"><h1><b><br><br>KEYBOARD DDR GAME.</span></b></h1> <p CLEAR=”right”>A game made in Unity 2D using C# learning game development in Unity.</p><a href="https://www.dropbox.com/sh/dfa3tr4xmdoxjg9/AAD7WByxqdI85cRcK1GsvODqa?dl=0"><button class="btn purple-gradient">Project</button></a>
+             </center>
             <br>
-            <center><a href="game.html"><img src="typeweeb.png" alt="image couldnt be loaded =(" width="300" height="300" draggable="false" align="left"></a><span clear="right" style="color:#f300b4;"><h1><b><br><br>TYPING GAME.</span></b></h1> <p CLEAR=”right”>A game that was created after being inspired by TypeRacer.</p></center>
+            <center><a href="game.html"><img src="typeweeb.png" alt="image couldnt be loaded =(" width="300" height="300" draggable="false" align="left"></a><span clear="right" style="color:#f300b4;"><h1><b><br><br>TYPING GAME.</span></b></h1> <p CLEAR=”right”>A game that was created after being inspired by TypeRacer.</p>
+            <a href="game.html"><button class="btn purple-gradient">Project</button></a>
+             <a href="https://github.com/Rymedy/Rymedy.github.io/blob/master/game.html"><button class="btn aqua-gradient">Code</button></a></center>
             <br>
-            <center><a href="stickfightgame.html"><img src="stickfight.png" alt="image couldnt be loaded =(" width="300" height="300" draggable="false" align="left"></a><span clear="right" style="color:#f300b4;"><h1><b><br><br>STICKFIGHT GAME.</span></b></h1> <p CLEAR=”right”>A game that were the base game mechanics for a platformer brawler.</p></center>
+            <center><a href="stickfightgame.html"><img src="stickfight.png" alt="image couldnt be loaded =(" width="300" height="300" draggable="false" align="left"></a><span clear="right" style="color:#f300b4;"><h1><b><br><br>STICKFIGHT GAME.</span></b></h1> <p CLEAR=”right”>A game that were the base game mechanics for a platformer brawler.</p>
+            <a href="stickfightgame.html"><button class="btn purple-gradient">Project</button></a>
+             <a href="https://github.com/Rymedy/Rymedy.github.io/blob/master/stickfightgame.html"><button class="btn aqua-gradient">Code</button></a></center>
             <br>
-            <center><a href="coronavirus.html"><img src="coronavirus.png" alt="image couldnt be loaded =(" width="300" height="300" draggable="false" align="left"></a><span clear="right" style="color:#f300b4;"><h1><b><br><br>COVID-19 TRACKER.</span></b></h1> <p CLEAR=”right”>An website that was designed to help others keep track of COVID-19 data.</p></center>
+            <center><a href="coronavirus.html"><img src="coronavirus.png" alt="image couldnt be loaded =(" width="300" height="300" draggable="false" align="left"></a><span clear="right" style="color:#f300b4;"><h1><b><br><br>COVID-19 TRACKER.</span></b></h1> <p CLEAR=”right”>An website that was designed to help others keep track of COVID-19 data.</p>
+            <a href="coronavirus.html"><button class="btn purple-gradient">Project</button></a>
+             <a href="https://github.com/Rymedy/Rymedy.github.io/blob/master/coronavirus.html"><button class="btn aqua-gradient">Code</button></a></center>
             <br>
-            <center><a href="HSC.html"><img src="studies.png" alt="image couldnt be loaded =(" width="300" height="300" draggable="false" align="left"></a><span clear="right" style="color:#f300b4;"><h1><b><br><br>HSC STUDIES.</span></b></h1> <p CLEAR=”right”>Website to assist with HSC Studies (provides resources etc.)</p></center>
+            <center><a href="HSC.html"><img src="studies.png" alt="image couldnt be loaded =(" width="300" height="300" draggable="false" align="left"></a><span clear="right" style="color:#f300b4;"><h1><b><br><br>HSC STUDIES.</span></b></h1> <p CLEAR=”right”>Website to assist with HSC Studies (provides resources etc.)</p>
+            <a href="HSC.html"><button class="btn purple-gradient">Project</button></a>
+             <a href="https://github.com/Rymedy/Rymedy.github.io/blob/master/HSC.html"><button class="btn aqua-gradient">Code</button></a></center>
             <br>
-            <center><a href="cookieclicker.html"><img src="cookie.png" alt="image couldnt be loaded =(" width="300" height="300" draggable="false" align="left"></a><span clear="right" style="color:#f300b4;"><h1><b><br><br>COOKIE CLICKER GAME (EXPERIMENTAL).</span></b></h1> <p CLEAR=”right”>Made to experiment with javascript functions, variables and values.</p></center>
+            <center><a href="cookieclicker.html"><img src="cookie.png" alt="image couldnt be loaded =(" width="300" height="300" draggable="false" align="left"></a><span clear="right" style="color:#f300b4;"><h1><b><br><br>COOKIE CLICKER GAME (EXPERIMENTAL).</span></b></h1> <p CLEAR=”right”>Made to experiment with javascript functions, variables and values.</p>
+            <a href="cookieclicker.html"><button class="btn purple-gradient">Project</button></a>
+             <a href="https://github.com/Rymedy/Rymedy.github.io/blob/master/cookieclicker.html"><button class="btn aqua-gradient">Code</button></a></center>
         </div></div></body>
-
-
-
-
-
-
 </center>
-
-
-
 </div>
-
-
-
-
 <script>
 var myVar;
 function myFunction() {
@@ -153,13 +136,13 @@ function showPage() {
   document.getElementById("loader").style.display = "none";
   document.getElementById("myDiv").style.display = "block";
 }
-
 </script>
-
 </div>
 </div>
 <div class="backgroundform">
-  <div class="form">
+  <div class="form" id="contact">
+    <br>
+    <br>
     <br>
     <br>
     <br>
@@ -179,5 +162,6 @@ function showPage() {
 <div class="center">
 <br>
 <center><p style="color:#181d23;">© 2020 Richard Webb.</p></center>
+<div style="text-align:center;"><script type="text/javascript" src="http://services.webestools.com/cpt_pages_views/71478-9-5.js"></script></div>
 </div>
 </html>
