@@ -1,0 +1,114 @@
+<html>
+<title>Study Notes</title>
+<div class="topnav">
+<h1 style="color:white;">study<b>notes</b></h1>
+</div>
+<body>
+<br>
+<br>
+<br>
+<h1>Math</h1>
+<h2>Cosine Rule</h2>
+<h3>Example: How long is side "c" ... ?</h3>
+<img src="cosinerule.png" alt="Italian Trulli">
+<p>We know angle C = 37º, and sides a = 8 and b = 11</p>
+<br>
+<p>The Law of Cosines says:	c^2 = a^2 + b^2 − 2ab cos(C)</p>
+<p>Put in the values we know:	c^2 = 8^2 + 11^2 − 2 × 8 × 11 × cos(37º)</p>
+<p>Do some calculations:	c^2 = 64 + 121 − 176 × 0.798…</p>
+<p>More calculations:	c2 = 44.44...</p>
+<p>Take the square root:	c = √44.44 = 6.67 to 2 decimal places</p>
+<br>
+<p><b>Answer: c = 6.67</b></p>
+<br>
+<h3>How to Remember</h3>
+<h4>How can you remember the formula?</h4>
+<br>
+<p>Well, it helps to know it's the Pythagoras Theorem with something extra so it works for all triangles:</p>
+<br>
+<p>Pythagoras Theorem:</p>
+<p>(only for Right-Angled Triangles)	a2 + b2 = c2</p>
+<p>Law of Cosines:</p>
+<p>(for all triangles)	a2 + b2 − 2ab cos(C) = c2</p>
+<p>So, to remember it:</p>
+<br>
+<p>think "abc": a2 + b2 = c2,</p>
+<p>then a 2nd "abc": 2ab cos(C),</p>
+<p>and put them together: a2 + b2 − 2ab cos(C) = c2</p>
+
+<h2>When to Use</h2>
+<p>The Law of Cosines is useful for finding:</p>
+<br>
+<p>the third side of a triangle when we know two sides and the angle between them (like the example above)</p>
+<p>the angles of a triangle when we know all three sides (as in the following example)</p>
+<br>
+<br>
+<h1>HSIE</h1>
+<p></p>
+<br>
+<br>
+<h1>English</h1>
+<p></p>
+
+<style>
+	html, body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin:10px;
+}
+body {
+	background-image: url("background.jpg");
+	height: 100%;
+	background-position: center;
+  background-repeat: ;
+  background-size: cover;
+}
+.myBtn {
+	 background-color: #555555; 
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+.topnav {
+  padding-bottom: 5px;
+  overflow: hidden;
+  background-color: #181d23;
+  text-align: left;
+  position: fixed;
+  width: 100%;
+  top:0;
+  left:0;
+  padding-left:30px;
+  z-index: 5
+}
+</style>
+<script>
+//Get the button
+var mybutton = document.getElementById("myBtn");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
+</script>
+<br>
+<br>
+<center><button onclick="topFunction()" id="myBtn" class="myBtn" title="Go to top">Scroll to Top</button></center>
+<br>
+</body>
+</html>
