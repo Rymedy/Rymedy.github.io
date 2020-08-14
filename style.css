@@ -179,19 +179,31 @@ html, body{
   height: 300px;
   width: 1200px;
 } 
-
+    #boxed p {
+      font-size: 25px;
+padding-bottom: 1.5rem;
+color: #555;
+line-height: 3rem;
+    }
+    .boxed1 {
+  background-color: #fafafa;
+  text-align: center;
+  display:inline-block;
+  height: 450px;
+  width: 1200px;
+} 
+    #boxed1 p {
+      font-size: 25px;
+padding-bottom: 1.5rem;
+color: #555;
+line-height: 3rem;
+    }
 .separator {
     background: #f300b4;
     width: 150px;
     height: 2px;
     margin: 1rem 0;
     padding: 0;
-    }
-    #boxed p {
-      font-size: 25px;
-padding-bottom: 1.5rem;
-color: #555;
-line-height: 3rem;
     }
 .inline {
    display: flex;
@@ -251,4 +263,10 @@ background-repeat: no-repeat;
 html {
   overflow-y:scroll;
   scroll-behavior: smooth;
+}
+.bullet-point {
+    font-size: 1.5em !important;
+}
+.profilepicture {
+    
 }
