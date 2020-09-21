@@ -3006,7 +3006,7 @@
 //
 //
      var username;
- var user1="hsc";
+ var user1="study";
     username = prompt('Enter Username To View Page');
     if (username==user1) {
 
@@ -3014,7 +3014,7 @@
       window.location="incorrectpassword.html";
     }
  var password;
- var pass1="atar";
+ var pass1="hsc";
     password = prompt('Enter Password To View Page');
     if (password==pass1) {
       alert('Correct username and password, click OK to enter.');
